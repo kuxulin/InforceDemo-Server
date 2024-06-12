@@ -31,6 +31,8 @@ public class Program
         app.MapRazorPages();
         app.MapControllers();
 
+        await app.SeedData();
+
         app.Run();
     }
 }
