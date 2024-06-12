@@ -1,3 +1,5 @@
+using back.Extensions;
+
 namespace back;
 
 public class Program
@@ -8,6 +10,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddRazorPages();
+        builder.Services.AddDatabaseAndEntities();
 
         var app = builder.Build();
 
