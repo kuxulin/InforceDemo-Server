@@ -32,9 +32,12 @@ public class AuthController : ControllerBase
         {
             var token = await _tokenService.GenerateTokenAsync(user);
 
-            return Ok(token);
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            });
         }
-
         return Unauthorized("Passwords arent equal");
     }
 }
