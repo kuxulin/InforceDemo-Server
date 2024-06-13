@@ -29,6 +29,13 @@ public class UrlController : ControllerBase
         return await _urlService.GetUrlsAsync();
     }
 
+    [HttpGet("{id}")]
+    [Authorize(Policy = UserPolicy.PARTNER_ADMIN)]
+    public async Task<Url> GetUrlByIdAsync(Guid id)
+    {
+        return await _urlService.GetUrlByIdAsync(id);
+    }
+
     [HttpPost]
     [Authorize(Policy = UserPolicy.PARTNER_ADMIN)]
     public async Task<IActionResult> CreateUrl([FromBody] CreateUrlViewModel model)
