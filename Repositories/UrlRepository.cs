@@ -25,7 +25,6 @@ public class UrlRepository : IUrlRepository
         await _context.SaveChangesAsync();
     }
 
-
     public async Task<bool> CodeExists(string code)
     {
         return await _context.Urls.AnyAsync(x => x.Code == code);

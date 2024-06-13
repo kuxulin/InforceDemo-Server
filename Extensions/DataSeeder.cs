@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using back.Contexts;
 using back.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace back.Extensions;
 
@@ -14,7 +14,7 @@ public static class DataSeeder
         using var userManager = scope.ServiceProvider.GetService<UserManager<User>>();
         using var roleManager = scope.ServiceProvider.GetService<RoleManager<Role>>();
 
-        if (context.Users.Any())
+        if (await context.Users.AnyAsync())
             return;
 
         Role[] roles =

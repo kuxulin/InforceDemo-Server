@@ -22,6 +22,7 @@ public class TokenService :ITokenService
     public async Task<JwtSecurityToken> GenerateTokenAsync(User user)
     {
         var userRoles = await _userManager.GetRolesAsync(user);
+
         var authClaims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.UserName),

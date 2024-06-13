@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace back.Models;
+﻿namespace back.Models;
 
 public class Url : BaseEntity
 {

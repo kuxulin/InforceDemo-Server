@@ -1,13 +1,10 @@
-﻿using Azure.Core;
-using back.Models;
+﻿using back.Models;
 using back.Models.Consts;
 using back.Models.ViewModels;
 using back.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace back.Controllers;
 [Route("api/[controller]")]
@@ -56,9 +53,11 @@ public class UrlController : ControllerBase
             ShortVersion = shortUrlStart,
             User = user
         };
+
         try
         {
             var shortUrl = await _urlService.CreateUrlAsync(url);
+
             return Ok(new
             {
                 shortUrl

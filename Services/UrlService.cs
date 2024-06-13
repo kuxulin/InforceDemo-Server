@@ -2,8 +2,6 @@
 using back.Repositories.Interfaces;
 using back.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections;
 
 namespace back.Services;
 
@@ -49,6 +47,7 @@ public class UrlService : IUrlService
         var codeChars = new char[length];
         int maxValue = alphabet.Length;
         var random = new Random();
+
         while (true)
         {
             for (var i = 0; i < length; i++)

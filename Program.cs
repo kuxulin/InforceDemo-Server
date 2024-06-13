@@ -8,8 +8,6 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-        builder.Services.AddRazorPages();
         builder.Services.AddDatabaseAndEntities();
         builder.Services.AddControllers();
         builder.Services.AddServices();
@@ -30,7 +28,6 @@ public class Program
         app.UseAuthorization();
         app.UseAuthentication();
 
-        app.MapRazorPages();
         app.MapControllers();
 
         await app.SeedData();

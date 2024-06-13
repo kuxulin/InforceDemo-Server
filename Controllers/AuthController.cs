@@ -41,6 +41,7 @@ public class AuthController : ControllerBase
                 expiration = token.ValidTo
             });
         }
+
         return Unauthorized(new
         {
             text= "Passwords arent equal"
