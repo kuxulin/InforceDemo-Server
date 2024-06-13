@@ -1,7 +1,10 @@
 ﻿using back.Contexts;
-using back.Interfaces;
 using back.Models;
+using back.Models.Consts;
+using back.Repositories;
+using back.Repositories.Interfaces;
 using back.Services;
+using back.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,6 +43,14 @@ public static class ProgramExtensions
     public static void AddServices(this IServiceCollection services)
     {
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUrlService, UrlService>();
+    }
+
+    public static void AddRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUrlRepository, UrlRepository>();
     }
 
     public static void AddAuthenticationConfigurations(this IServiceCollection services)

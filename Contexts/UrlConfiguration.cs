@@ -11,5 +11,7 @@ public class UrlConfiguration : IEntityTypeConfiguration<Url>
         builder.HasOne(url => url.User)
             .WithMany()
             .HasForeignKey(url => url.UserId);
+
+        builder.HasIndex(url => url.Code).IsUnique();
     }
 }

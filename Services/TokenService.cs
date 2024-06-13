@@ -1,5 +1,5 @@
-﻿using back.Interfaces;
-using back.Models;
+﻿using back.Models;
+using back.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -42,5 +42,12 @@ public class TokenService :ITokenService
         );
 
         return token;
+    }
+
+    public string GetUserNameFromToken (string token)
+    {
+        var handler = new JwtSecurityTokenHandler();
+        var parsedToken = handler.ReadJwtToken(token);
+        return parsedToken.Claims.First(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value;
     }
 }

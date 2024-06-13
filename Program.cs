@@ -13,6 +13,7 @@ public class Program
         builder.Services.AddDatabaseAndEntities();
         builder.Services.AddControllers();
         builder.Services.AddServices();
+        builder.Services.AddRepositories();
         builder.Services.AddAuthenticationConfigurations();
         builder.Services.AddPolicyAuthentication();
 
