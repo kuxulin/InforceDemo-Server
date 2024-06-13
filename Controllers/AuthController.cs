@@ -1,6 +1,6 @@
-﻿using back.Interfaces;
-using back.Models;
+﻿using back.Models;
 using back.Models.ViewModels;
+using back.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,7 +25,10 @@ public class AuthController : ControllerBase
         var user = await _userManager.FindByNameAsync(model.Name);
         if(user is null)
         {
-            return Unauthorized("Cannot find user in system");
+            return Unauthorized(new
+            {
+                text = "Cannot find user in system"
+            });
         }
 
         if(await _userManager.CheckPasswordAsync(user, model.Password))
@@ -38,6 +41,9 @@ public class AuthController : ControllerBase
                 expiration = token.ValidTo
             });
         }
-        return Unauthorized("Passwords arent equal");
+        return Unauthorized(new
+        {
+            text= "Passwords arent equal"
+        });
     }
 }
