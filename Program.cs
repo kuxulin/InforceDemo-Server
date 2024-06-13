@@ -14,6 +14,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddServices();
         builder.Services.AddAuthenticationConfigurations();
+        builder.Services.AddPolicyAuthentication();
 
         builder.Services.AddCors(options => options.AddPolicy("default", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 

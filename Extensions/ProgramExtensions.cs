@@ -66,4 +66,13 @@ public static class ProgramExtensions
                 };
             });
     }
+
+    public static void AddPolicyAuthentication(this IServiceCollection services)
+    {
+        services.AddAuthorization(_ =>
+        {
+            _.AddPolicy(UserPolicy.PARTNER_ADMIN, p => p.RequireRole("Partner","Admin"));
+            _.AddPolicy(UserPolicy.ADMIN, p => p.RequireRole("Admin"));
+        });
+    }
 }
