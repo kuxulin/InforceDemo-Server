@@ -21,13 +21,19 @@ public class UrlRepository : IUrlRepository
 
     public async Task AddUrlAsync(Url url)
     {
-        await _context.Urls.AddAsync(url);
+        _context.Urls.Add(url);
         await _context.SaveChangesAsync();
     }
 
     public async Task<bool> CodeExists(string code)
     {
         return await _context.Urls.AnyAsync(x => x.Code == code);
+    }
+
+    public async Task DeleteUrlAsync(Url url)
+    {
+        _context.Urls.Remove(url);
+        await _context.SaveChangesAsync();
     }
 }
 

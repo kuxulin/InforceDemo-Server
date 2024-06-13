@@ -19,6 +19,14 @@ public class UrlService : IUrlService
         return await _urlRepository.GetUrls().ToListAsync();
     }
 
+    public async Task<Url> GetUrlByIdAsync(Guid id)
+    {
+        return await _urlRepository.GetUrls()
+            .Include(url => url.User)
+            .Where(url => url.Id == id)
+            .FirstOrDefaultAsync();
+    }
+
     public async Task<string> CreateUrlAsync(Url url)
     {
         var possibleUrl = await GetUrlByLongVersion(url.LongVersion);
@@ -29,7 +37,7 @@ public class UrlService : IUrlService
         }
 
         url.Code = await MakeShortVersion(url.LongVersion);
-        url.ShortVersion += url.Code;       
+        url.ShortVersion += url.Code;
         await _urlRepository.AddUrlAsync(url);
 
         return url.ShortVersion;
@@ -64,5 +72,10 @@ public class UrlService : IUrlService
                 return code;
             }
         }
+    }
+
+    public async Task DeleteUrlAsync(Url url)
+    {
+        await _urlRepository.DeleteUrlAsync(url);
     }
 }

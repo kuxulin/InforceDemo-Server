@@ -12,6 +12,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddServices();
         builder.Services.AddRepositories();
+
         builder.Services.AddAuthenticationConfigurations();
         builder.Services.AddPolicyAuthentication();
 
@@ -25,8 +26,8 @@ public class Program
         app.UseRouting();
         app.UseCors("default");
 
-        app.UseAuthorization();
         app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapControllers();
 

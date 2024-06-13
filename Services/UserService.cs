@@ -18,4 +18,9 @@ public class UserService :IUserService
     {
         return await _userRepository.GetUsers().Where(u => u.UserName == userName).FirstOrDefaultAsync();
     }
+
+    public async Task<IEnumerable<string>> GetUserRolesAsync(User user)
+    {
+        return await _userRepository.GetUserRolesAsync(user);
+    }
 }
